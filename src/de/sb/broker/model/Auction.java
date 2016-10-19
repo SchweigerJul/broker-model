@@ -26,7 +26,10 @@ public class Auction extends BaseEntity {
 		// TODO Auto-generated constructor stub
 	}
 	
-	
+
+	public long getAuctionReference(){
+		return 0;
+	}
 	public boolean isClosed(){
 		return false;
 	}

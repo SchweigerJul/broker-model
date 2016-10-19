@@ -31,7 +31,10 @@ public class Bid extends BaseEntity{
 	public Person getBidder() {
 		return bidder;
 	}
-	
+
+	public long getAuctionReference(){
+		return 0;
+	}
 	public long getBidderReference(){
 		return 0;
 	}
