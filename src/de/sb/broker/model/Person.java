@@ -1,5 +1,7 @@
 package de.sb.broker.model;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,13 +15,22 @@ public class Person extends BaseEntity {
 	private Address address;
 	private Set<Auction> auctions;
 	private Set<Bid> bids;
-	public static enum Group {
+
+	public enum Group {
 		ADMIN, USER
 	}
 	
 	static public byte[] passwordHash(String password){
-		//TODO SHA256
-		return new byte[32];
+		MessageDigest messageDigest = null;
+
+		try {
+			messageDigest = MessageDigest.getInstance("SHA-256");
+		} catch (NoSuchAlgorithmException e) {
+			System.out.println("NoSuchAlgorithmException: " + e.getStackTrace());
+		}
+
+		messageDigest.update(password.getBytes());
+		return messageDigest.digest();
 	}
 	
 	public Person() {
