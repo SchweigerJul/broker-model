@@ -11,8 +11,12 @@ public class Person extends BaseEntity {
 	private Contact contact;
 	private List<Auction> auctions;
 	private List<Bid> bids;
+	public static enum Group {
+		ADMIN, USER
+	}
 	
-	public Person(long identity, int version, long creationTimestamp) {
+	
+	public Person(long identity, int version, long creationTimestamp, Group group) {
 		super(identity, version, creationTimestamp);
 		// TODO Auto-generated constructor stub
 	}
