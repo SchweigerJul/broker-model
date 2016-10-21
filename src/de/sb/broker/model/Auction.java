@@ -1,7 +1,7 @@
 package de.sb.broker.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Auction extends BaseEntity {
 	private String title;
@@ -10,73 +10,87 @@ public class Auction extends BaseEntity {
 	private long closureTimestamp;
 	private String description;
 	private Person seller;
-	private List<Bid> bids;
-	
-	public Auction(long identity, int version, long creationTimestamp, String title, short unitCount, long askingPrice, long closureTimestamp, String description, Person seller) {
-		super(identity, version, creationTimestamp);
-		
-		this.title=title;
-		this.unitCount=unitCount;
-		this.askingPrice=askingPrice;
-		this.closureTimestamp=closureTimestamp;
-		this.description=description;
-		this.seller=seller;
-		bids=new ArrayList<Bid>();
-		
-		// TODO Auto-generated constructor stub
-	}
-	
+	private Set<Bid> bids;
 
-	public long getAuctionReference(){
-		return 0;
+	public Auction(Person seller) {
+		super();	
+
+		this.title = "";
+		this.unitCount = 1;
+		this.askingPrice = 1;
+		this.closureTimestamp = System.currentTimeMillis();
+		this.description = "";
+		this.seller = seller;
+		bids = new HashSet<>(); 
 	}
-	public boolean isClosed(){
-		return false;
+
+	protected Auction() {
+		this(null);
 	}
-	
-	public boolean isSealed(){
-		return false;
+
+	public long getSellerReference() {
+		return seller==null ? 0 : seller.getIdentity();	
 	}
-	
+
+	public boolean isClosed() {
+		return System.currentTimeMillis() > closureTimestamp ? true : false;
+	}
+
+	public boolean isSealed() {
+		return !bids.isEmpty() || isClosed();
+	}
+
 	public Bid getBid(Person bidder) {
-		
-		return bids.get(0);
-		
+		for (Bid bid : bids) {
+			if (bid.getBidder().equals(bidder)) {
+				return bid;
+			}
+		}
+		return null;
 	}
+
 	public String getTitle() {
 		return title;
 	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
 	public short getUnitCount() {
 		return unitCount;
 	}
+
 	public void setUnitCount(short unitCount) {
 		this.unitCount = unitCount;
 	}
+
 	public long getAskingPrice() {
 		return askingPrice;
 	}
+
 	public void setAskingPrice(long askingPrice) {
 		this.askingPrice = askingPrice;
 	}
+
 	public long getClosureTimestamp() {
 		return closureTimestamp;
 	}
+
 	public void setClosureTimestamp(long closureTimestamp) {
 		this.closureTimestamp = closureTimestamp;
 	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 	public Person getSeller() {
 		return seller;
 	}
 
-
-	
 }

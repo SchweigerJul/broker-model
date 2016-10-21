@@ -49,7 +49,7 @@ import de.sb.java.net.HttpAuthenticationCodec;
  */
 // TODO Uncomment this: @Provider
 @Copyright(year=2013, holders="Sascha Baumeister")
-public class LifeCycleProviderSkeleton implements ContainerRequestFilter, ContainerResponseFilter, ExceptionMapper<Throwable> {
+public class LifeCycleProvider implements ContainerRequestFilter, ContainerResponseFilter, ExceptionMapper<Throwable> {
 	static private volatile EntityManagerFactory BROKER_FACTORY;
 	static private final ThreadLocal<EntityManager> BROKER_THREAD_LOCAL = new ThreadLocal<>();
 	static private final Object MONITOR = new Object();
@@ -128,7 +128,7 @@ public class LifeCycleProviderSkeleton implements ContainerRequestFilter, Contai
 	 * happened yet.
 	 * @throws RuntimeException if there is a problem configuring a persistence unit
 	 */
-	public LifeCycleProviderSkeleton () throws RuntimeException {
+	public LifeCycleProvider () throws RuntimeException {
 		brokerFactory();
 	}
 

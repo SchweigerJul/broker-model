@@ -5,15 +5,14 @@ public abstract class BaseEntity implements Comparable<BaseEntity>{
 	private int version;
 	private long creationTimestamp;
 	
-	public BaseEntity(long identity, int version, long creationTimestamp){
-		this.identity=identity;
-		this.version=version;
-		this.creationTimestamp=creationTimestamp;
+	public BaseEntity(){
+		this.version=1;
+		this.creationTimestamp=System.currentTimeMillis();
 		
 	}
 	
 	public int compareTo(BaseEntity e){
-		return version;
+		return Long.compare(this.identity, e.identity);
 		
 	}
 	
@@ -26,16 +25,8 @@ public abstract class BaseEntity implements Comparable<BaseEntity>{
 	public long getIdentity() {
 		return identity;
 	}
-	public void setIdentity(long identity) {
-		this.identity = identity;
-	}
 	public long getCreationTimestamp() {
 		return creationTimestamp;
 	}
 
-
-
-	public void setCreationTimestamp(long creationTimestamp) {
-		this.creationTimestamp = creationTimestamp;
-	}
 }

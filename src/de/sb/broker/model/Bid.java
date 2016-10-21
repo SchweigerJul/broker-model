@@ -6,23 +6,25 @@ public class Bid extends BaseEntity{
 	private Auction auction;
 	private Person bidder;
 	
-	public Bid(long identity, int version, long creationTimestamp, long price, Auction auction, Person bidder) {
-		super(identity, version, creationTimestamp);
-		this.price=price;
-		this.auction=auction;
-		this.bidder=bidder;
+	public Bid(Auction auction, Person bidder) {
+		super();
 		
+		this.price = 0;
+		this.auction = auction;
+		this.bidder = bidder;
+	}
+	
+	protected Bid() {
+		this(null, null);
 	}
 	
 	public Auction getAuction() {
 		return auction;
 	}
 
-
 	public long getPrice() {
 		return price;
 	}
-
 
 	public void setPrice(long price) {
 		this.price = price;
@@ -33,9 +35,9 @@ public class Bid extends BaseEntity{
 	}
 
 	public long getAuctionReference(){
-		return 0;
+		return auction==null ? 0 : auction.getIdentity();
 	}
 	public long getBidderReference(){
-		return 0;
+		return bidder==null ? 0 : bidder.getIdentity();
 	}
 }

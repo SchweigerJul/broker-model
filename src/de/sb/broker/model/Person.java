@@ -1,6 +1,7 @@
 package de.sb.broker.model;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Person extends BaseEntity {
 
@@ -9,26 +10,36 @@ public class Person extends BaseEntity {
 	private Group group;
 	private Name name;
 	private Contact contact;
-	private List<Auction> auctions;
-	private List<Bid> bids;
+	private Address address;
+	private Set<Auction> auctions;
+	private Set<Bid> bids;
 	public static enum Group {
 		ADMIN, USER
 	}
 	
-	
-	public Person(long identity, int version, long creationTimestamp, Group group) {
-		super(identity, version, creationTimestamp);
-		// TODO Auto-generated constructor stub
-	}
-	
-	
-	public byte[] passwordHash(String password){
-		
+	static public byte[] passwordHash(String password){
+		//TODO SHA256
 		return new byte[32];
 	}
 	
+	public Person() {
+		super();
+		this.alias = "";
+		this.passwordHash = passwordHash("");
+		this.group = Group.USER;
+		this.name = new Name();
+		this.contact = new Contact();
+		this.address = new Address();
+		this.auctions = new HashSet<>();
+		this.bids = new HashSet<>();
+	}
+		
 	public byte[] getPasswordHash() {
 		return passwordHash;
+	}
+
+	public void setPasswordHash(byte[] passwordHash){
+		this.passwordHash = passwordHash;
 	}
 
 	public String getAlias() {
@@ -51,32 +62,19 @@ public class Person extends BaseEntity {
 		return name;
 	}
 
-	public void setName(Name name) {
-		this.name = name;
-	}
-
 	public Contact getContact() {
 		return contact;
 	}
-
-	public void setContact(Contact contact) {
-		this.contact = contact;
+	
+	public Address getAddress() {
+		return address;
 	}
 
-	public List<Auction> getAuctions() {
+	public Set<Auction> getAuctions() {
 		return auctions;
 	}
 
-	public void setAuctions(List<Auction> auctions) {
-		this.auctions = auctions;
-	}
-
-	public List<Bid> getBids() {
+	public Set<Bid> getBids() {
 		return bids;
 	}
-
-	public void setBids(List<Bid> bids) {
-		this.bids = bids;
-	}
-	
 }
