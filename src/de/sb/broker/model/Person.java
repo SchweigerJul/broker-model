@@ -1,5 +1,6 @@
 package de.sb.broker.model;
 
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import java.security.MessageDigest;
@@ -7,13 +8,20 @@ import java.security.NoSuchAlgorithmException;
 import java.util.HashSet;
 import java.util.Set;
 
+@Entity
+@Table(name="Person", schema = "broker")
+@DiscriminatorValue(value = "Person")
+@PrimaryKeyJoinColumn(name = "identity")
 public class Person extends BaseEntity {
 
+	@Column(unique = true, nullable = false)
 	@NotNull
 	private String alias;
 
 	private byte[] passwordHash;
 
+	@Enumerated
+	@Column(nullable = false)
 	@NotNull
 	private Group group;
 
@@ -21,15 +29,20 @@ public class Person extends BaseEntity {
 	@Valid
 	private Name name;
 
+	@Embedded
 	@NotNull
 	@Valid
 	private Contact contact;
 
+	@Embedded
 	@NotNull
 	@Valid
 	private Address address;
 
+	@OneToMany(mappedBy = "seller")
 	private Set<Auction> auctions;
+
+	@OneToMany(mappedBy = "bidder")
 	private Set<Bid> bids;
 
 	public enum Group {

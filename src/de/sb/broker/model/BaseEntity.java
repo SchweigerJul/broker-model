@@ -1,8 +1,20 @@
 package de.sb.broker.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="BaseEntity", schema = "broker")
+@Inheritance(strategy = InheritanceType.JOINED)
+@DiscriminatorColumn(name = "discriminator", discriminatorType = DiscriminatorType.STRING)
 public abstract class BaseEntity implements Comparable<BaseEntity>{
+
+	@Id
+	@GeneratedValue
 	private long identity;
+
+	@Version
 	private int version;
+
 	private long creationTimestamp;
 	
 	public BaseEntity(){
@@ -28,5 +40,4 @@ public abstract class BaseEntity implements Comparable<BaseEntity>{
 	public long getCreationTimestamp() {
 		return creationTimestamp;
 	}
-
 }

@@ -1,16 +1,25 @@
 package de.sb.broker.model;
 
+import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
+@Entity
+@Table(name="Bid", schema = "broker")
+@DiscriminatorValue(value = "Bid")
+@PrimaryKeyJoinColumn(name = "identity")
 public class Bid extends BaseEntity{
 
 	@Min(0)
 	private long price;
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "auctionIdentity")
 	@NotNull
 	private Auction auction;
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "personIdentity")
 	@NotNull
 	private Person bidder;
 	

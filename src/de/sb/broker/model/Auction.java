@@ -1,10 +1,15 @@
 package de.sb.broker.model;
 
+import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
+@Entity
+@Table(name="Auction", schema = "broker")
+@DiscriminatorValue(value = "Auction")
+@PrimaryKeyJoinColumn(name = "identity")
 public class Auction extends BaseEntity {
 
 	@NotNull
@@ -21,8 +26,12 @@ public class Auction extends BaseEntity {
 	@NotNull
 	private String description;
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "personIdentity")
 	@NotNull
 	private Person seller;
+
+	@OneToMany(mappedBy = "auction")
 	private Set<Bid> bids;
 
 	public Auction(Person seller) {

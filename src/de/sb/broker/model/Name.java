@@ -1,7 +1,10 @@
 package de.sb.broker.model;
 
+import javax.persistence.Embeddable;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.validation.constraints.NotNull;
 
+@Embeddable
 public class Name {
 
 	@NotNull

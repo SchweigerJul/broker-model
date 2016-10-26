@@ -1,12 +1,16 @@
 package de.sb.broker.model;
 
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+@Embeddable
 public class Contact {
 	private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
 			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
+	@Column(unique = true)
 	@NotNull
 	@Pattern(regexp = EMAIL_PATTERN)
 	private String email;
