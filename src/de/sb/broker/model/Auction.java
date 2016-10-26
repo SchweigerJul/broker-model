@@ -1,14 +1,27 @@
 package de.sb.broker.model;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 
 public class Auction extends BaseEntity {
+
+	@NotNull
 	private String title;
+
+	@Min(0)
 	private short unitCount;
+
+	@Min(0)
 	private long askingPrice;
+
 	private long closureTimestamp;
+
+	@NotNull
 	private String description;
+
+	@NotNull
 	private Person seller;
 	private Set<Bid> bids;
 

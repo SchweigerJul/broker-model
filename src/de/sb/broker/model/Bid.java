@@ -1,9 +1,17 @@
 package de.sb.broker.model;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
 public class Bid extends BaseEntity{
 
+	@Min(0)
 	private long price;
+
+	@NotNull
 	private Auction auction;
+
+	@NotNull
 	private Person bidder;
 	
 	public Bid(Auction auction, Person bidder) {

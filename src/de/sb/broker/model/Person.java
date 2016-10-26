@@ -1,5 +1,7 @@
 package de.sb.broker.model;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashSet;
@@ -7,12 +9,26 @@ import java.util.Set;
 
 public class Person extends BaseEntity {
 
+	@NotNull
 	private String alias;
+
 	private byte[] passwordHash;
+
+	@NotNull
 	private Group group;
+
+	@NotNull
+	@Valid
 	private Name name;
+
+	@NotNull
+	@Valid
 	private Contact contact;
+
+	@NotNull
+	@Valid
 	private Address address;
+
 	private Set<Auction> auctions;
 	private Set<Bid> bids;
 

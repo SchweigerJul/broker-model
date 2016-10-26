@@ -1,9 +1,16 @@
 package de.sb.broker.model;
 
+import javax.validation.constraints.NotNull;
+
 public class Address {
-	
+
+	@NotNull
 	private String street;
+
+	@NotNull
 	private String postCode;
+
+	@NotNull
 	private String city;
 	
 	public String getStreet() {

@@ -1,8 +1,13 @@
 package de.sb.broker.model;
 
+import javax.validation.constraints.NotNull;
+
 public class Name {
-	
+
+	@NotNull
 	private String family;
+
+	@NotNull
 	private String given;	
 	
 	public String getFamily() {
