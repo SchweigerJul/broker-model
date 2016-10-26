@@ -5,6 +5,12 @@ import java.security.NoSuchAlgorithmException;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="Person", schema="broker")
+@DiscriminatorValue(value="Person")
+@PrimaryKeyJoinColumn(name="identity")
 public class Person extends BaseEntity {
 
 	private String alias;

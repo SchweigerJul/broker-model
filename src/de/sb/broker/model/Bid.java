@@ -1,5 +1,11 @@
 package de.sb.broker.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="Bid", schema="broker")
+@DiscriminatorValue(value="Bid")
+@PrimaryKeyJoinColumn(name="identity")
 public class Bid extends BaseEntity{
 
 	private long price;

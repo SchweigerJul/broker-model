@@ -1,5 +1,8 @@
 package de.sb.broker.model;
 
+import javax.persistence.*;
+
+@Embeddable
 public class Contact {
 
 	private String email;

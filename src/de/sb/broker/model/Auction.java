@@ -3,6 +3,12 @@ package de.sb.broker.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name="Auction", schema="broker")
+@DiscriminatorValue(value="Auction")
+@PrimaryKeyJoinColumn(name="identity")
 public class Auction extends BaseEntity {
 	private String title;
 	private short unitCount;
