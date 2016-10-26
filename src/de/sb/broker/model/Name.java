@@ -5,7 +5,9 @@ import javax.persistence.*;
 @Embeddable
 public class Name {
 	
+	@Column
 	private String family;
+	@Column
 	private String given;	
 	
 	public String getFamily() {

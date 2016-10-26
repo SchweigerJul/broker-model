@@ -10,12 +10,21 @@ import javax.persistence.*;
 @DiscriminatorValue(value="Auction")
 @PrimaryKeyJoinColumn(name="identity")
 public class Auction extends BaseEntity {
+	
+	@Column
 	private String title;
+	@Column
 	private short unitCount;
+	@Column
 	private long askingPrice;
+	@Column
 	private long closureTimestamp;
+	@Column
 	private String description;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="personIdentity")
 	private Person seller;
+	@OneToMany(mappedBy="auction")
 	private Set<Bid> bids;
 
 	public Auction(Person seller) {

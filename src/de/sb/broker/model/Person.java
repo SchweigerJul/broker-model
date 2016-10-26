@@ -13,15 +13,25 @@ import javax.persistence.*;
 @PrimaryKeyJoinColumn(name="identity")
 public class Person extends BaseEntity {
 
+	@Column
 	private String alias;
+	@Column
 	private byte[] passwordHash;
+	@Column
+	@Enumerated
 	private Group group;
+	@Embedded
 	private Name name;
+	@Embedded
 	private Contact contact;
+	@Embedded
 	private Address address;
+	@OneToMany(mappedBy="seller")
 	private Set<Auction> auctions;
+	@OneToMany(mappedBy="bidder")
 	private Set<Bid> bids;
-
+	
+	
 	public enum Group {
 		ADMIN, USER
 	}

@@ -11,9 +11,9 @@ public abstract class BaseEntity implements Comparable<BaseEntity>{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long identity;
-	
 	@Version
 	private int version;
+	@Column
 	private long creationTimestamp;
 	
 	public BaseEntity(){

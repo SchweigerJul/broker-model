@@ -5,7 +5,9 @@ import javax.persistence.*;
 @Embeddable
 public class Contact {
 
+	@Column
 	private String email;
+	@Column
 	private String phone;
 	
 	public String getEmail() {

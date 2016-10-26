@@ -5,8 +5,11 @@ import javax.persistence.*;
 @Embeddable
 public class Address {
 	
+	@Column
 	private String street;
+	@Column
 	private String postCode;
+	@Column
 	private String city;
 	
 	public String getStreet() {

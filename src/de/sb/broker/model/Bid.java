@@ -8,8 +8,13 @@ import javax.persistence.*;
 @PrimaryKeyJoinColumn(name="identity")
 public class Bid extends BaseEntity{
 
+	@Column
 	private long price;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="auctionIdentity")
 	private Auction auction;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="personIdentity")
 	private Person bidder;
 	
 	public Bid(Auction auction, Person bidder) {
