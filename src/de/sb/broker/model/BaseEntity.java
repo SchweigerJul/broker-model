@@ -15,17 +15,16 @@ public abstract class BaseEntity implements Comparable<BaseEntity>{
 	@Version
 	private int version;
 
+	@Column(nullable = false)
 	private long creationTimestamp;
 	
 	public BaseEntity(){
 		this.version=1;
 		this.creationTimestamp=System.currentTimeMillis();
-		
 	}
 	
 	public int compareTo(BaseEntity e){
 		return Long.compare(this.identity, e.identity);
-		
 	}
 	
 	public int getVersion() {

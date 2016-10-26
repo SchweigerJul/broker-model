@@ -12,17 +12,22 @@ import java.util.Set;
 @PrimaryKeyJoinColumn(name = "identity")
 public class Auction extends BaseEntity {
 
+	@Column(nullable = false)
 	@NotNull
 	private String title;
 
+	@Column(nullable = false)
 	@Min(0)
 	private short unitCount;
 
+	@Column(nullable = false)
 	@Min(0)
 	private long askingPrice;
 
+	@Column(nullable = false)
 	private long closureTimestamp;
 
+	@Column(nullable = false)
 	@NotNull
 	private String description;
 

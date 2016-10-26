@@ -1,17 +1,21 @@
 package de.sb.broker.model;
 
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.validation.constraints.NotNull;
 
 @Embeddable
 public class Address {
 
+	@Column(nullable = false)
 	@NotNull
 	private String street;
 
+	@Column(nullable = false)
 	@NotNull
 	private String postCode;
 
+	@Column(nullable = false)
 	@NotNull
 	private String city;
 	

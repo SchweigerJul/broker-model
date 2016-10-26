@@ -18,6 +18,7 @@ public class Person extends BaseEntity {
 	@NotNull
 	private String alias;
 
+	@Column(nullable = false)
 	private byte[] passwordHash;
 
 	@Enumerated

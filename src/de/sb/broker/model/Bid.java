@@ -11,6 +11,7 @@ import javax.validation.constraints.NotNull;
 public class Bid extends BaseEntity{
 
 	@Min(0)
+	@Column(nullable = false)
 	private long price;
 
 	@ManyToOne(fetch = FetchType.LAZY)
