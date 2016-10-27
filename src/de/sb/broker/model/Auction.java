@@ -3,6 +3,9 @@ package de.sb.broker.model;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+
+import de.sb.java.validation.Inequal;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,6 +13,7 @@ import java.util.Set;
 @Table(name="Auction", schema = "broker")
 @DiscriminatorValue(value = "Auction")
 @PrimaryKeyJoinColumn(name = "identity")
+@Inequal(leftAccessPath="closureTimestamp", rightAccessPath="creationTimestamp", operator=Inequal.Operator.GREATER)
 public class Auction extends BaseEntity {
 
 	@Column(nullable = false)
