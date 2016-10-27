@@ -27,6 +27,7 @@ public class Person extends BaseEntity {
 	@NotNull
 	private Group group;
 
+	@Embedded
 	@NotNull
 	@Valid
 	private Name name;
